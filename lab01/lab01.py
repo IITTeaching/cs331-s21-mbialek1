@@ -22,7 +22,22 @@ def captured_output():
 
 # implement this function
 def is_perfect(n):
-    pass
+    
+    def is_integer_num(n):
+        if isinstance(n, int):
+            return True
+        if isinstance(n, float):
+            return n.is_integer()
+        return False
+    
+    if n < 0:
+        return False
+    factors =  [ number for number in range(1,n) if is_integer_num(n/number)]
+    total = sum(factors)
+    if total == n:
+        return True
+    return False
+
 
 # (3 points)
 def test1():
@@ -40,7 +55,10 @@ def test1():
 
 # implement this function
 def multiples_of_3_and_5(n):
-    pass
+   threes = [ num for num in range(1,n) if num % 3 == 0 ]
+   fives = [ num for num in range(1,n) if num % 5 == 0 ]
+   return sum(threes) + sum(fives)
+
 
 # (3 points)
 def test2():
@@ -53,7 +71,14 @@ def test2():
 # EXERCISE 3
 #################################################################################
 def integer_right_triangles(p):
-    pass
+   triples = []
+   for a in range(1, p):
+       for b in range(1, p):
+           for c in range(1, p):
+               if (a**2 + b**2 == c**2) and (a + b + c == p) and (a <= b) and (b<c):
+                   triples.append((a, b, c))          
+   return len(triples)
+
 
 def test3():
     tc = unittest.TestCase()
@@ -67,7 +92,36 @@ def test3():
 
 # implement this function
 def gen_pattern(chars):
-    pass
+   
+    bf_string = chars[::-1] #making string backwards adnarim
+    bf_string = bf_string[:-1] #cutting off first letter eg adnari
+    big_string = bf_string + chars #adnarimiranda
+    joined_string = '.'.join(big_string) #joins w .
+    longest_line = len(joined_string)
+
+    s = '' #the final string product
+    num = 0
+    
+    for i in range(len(chars)):
+        num+=1 
+        s_cutoff = chars[-num:] #cut
+        bf_string = s_cutoff[::-1] #reversed
+        bf_string = bf_string[:-1] 
+        big_string = bf_string + s_cutoff 
+        joined_string = '.'.join(big_string) 
+        s = joined_string.center(longest_line, '.') + '\n' 
+        print(s)
+        
+    for i in range(len(chars) - 1):
+        num-=1 
+        s_cutoff = chars[-num:] #cut
+        bf_string = s_cutoff[::-1] #reversed
+        bf_string = bf_string[:-1] 
+        big_string = bf_string + s_cutoff 
+        joined_string = '.'.join(big_string) 
+        s = joined_string.center(longest_line, '.') + '\n' 
+        print(s)
+
 
 def test4():
     tc = unittest.TestCase()
