@@ -55,9 +55,10 @@ def test1():
 
 # implement this function
 def multiples_of_3_and_5(n):
-   threes = [ num for num in range(1,n) if num % 3 == 0 ]
-   fives = [ num for num in range(1,n) if num % 5 == 0 ]
+   threes = [ num for num in range(n) if num%3==0 ]
+   fives = [ num for num in range(n) if num%5==0 and num%3 != 0]
    return sum(threes) + sum(fives)
+   #must REMOVE DUPLICATES 
 
 
 # (3 points)
@@ -109,7 +110,7 @@ def gen_pattern(chars):
         bf_string = bf_string[:-1] 
         big_string = bf_string + s_cutoff 
         joined_string = '.'.join(big_string) 
-        s = joined_string.center(longest_line, '.') + '\n' 
+        s = joined_string.center(longest_line, '.') 
         print(s)
         
     for i in range(len(chars) - 1):
@@ -119,8 +120,10 @@ def gen_pattern(chars):
         bf_string = bf_string[:-1] 
         big_string = bf_string + s_cutoff 
         joined_string = '.'.join(big_string) 
-        s = joined_string.center(longest_line, '.') + '\n' 
+        s = joined_string.center(longest_line, '.')
         print(s)
+
+    print('\n')
 
 
 def test4():
